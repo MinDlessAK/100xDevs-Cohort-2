@@ -40,4 +40,12 @@ There are some common style attributes?
 5 padding/margin- BASSICALLY IT ADDS SPACE INSIDE THE BORDER  padding means pad the div with extra space like if i have a div containg some content padding property are used to generate space around an elements(div) content 
 margin-Margins are used to create space around elements, outside of any defined borders.
 
-6 box-shadow-Add shadows to different <div> elements:The box-shadow property attaches one or more shadows to an element.
+6 box-shadow-Add shadows to different <div> elements:The box-shadow property attaches one or more shadows to an element. we can add 3 attributes inside box-shadow:10px 20px 40px black;
+10px means in which directions will shadow go like left or right and 20px it will stretch like alot and last 40px it will diffuse more to top and bottom 
+
+----------------------------------------------------
+Display:flex (flexbox)?
+------------------------------------------------------
+on parent makes all div siblings reside in the same line 
+like we have a <div> and inside that <div> we have 5 <divs> then then if i add Display flex in main div then the children divs will be shown in row and we can also position them 
+like center end start
