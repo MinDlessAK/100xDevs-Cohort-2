@@ -1,4 +1,4 @@
-What we're Learning
+What we're Learning This Week
 1.VSCode
 2.HTML
 3.CSS
