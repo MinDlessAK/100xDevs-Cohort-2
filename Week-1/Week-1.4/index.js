@@ -40,7 +40,6 @@ find(100)
 
 */
 
-/*
 
 //callback
 function square(n) {
@@ -68,7 +67,7 @@ function square(n) {
 // callback(b) is called, which is equivalent to cube(b). This results in 8 (2 * 2 * 2).
 // The function then returns the sum of these two results, which is 16.
 
-*/
+
 
 /*
 //Anonymous functions
