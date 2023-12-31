@@ -17,9 +17,7 @@ for(let i=0; i<5; i++){
 }
 
 While Loop: The While loop is used for indefinite iteration, meaning the number of iterations is not known before the loop starts. The loop will continue to execute as long as the specified condition is true. Here's an example:
-javascript
-Download
-Copy code
+
 let i=0;
 while(i<5){
  console.log(i);
@@ -27,9 +25,7 @@ while(i<5){
 }
 
 Do-While Loop: The Do-While loop is similar to the While loop, but it guarantees that the loop will be executed at least once. This is because the condition is checked after the code inside the loop is executed. Here's an example:
-javascript
-Download
-Copy code
+
 let i=0;
 do{
  console.log(i);
