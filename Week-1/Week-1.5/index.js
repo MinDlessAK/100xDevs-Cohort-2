@@ -30,9 +30,8 @@ function findSum(n) {
 */
 
 
-/*
+
 //Promise
-const { promises } = require('dns');
 const fs = require('fs');
 
 // my own asynchronous function
@@ -55,7 +54,7 @@ function hi(){
 
 kiratsReadFile().then(onDone);
 hi()
-*/
+
 
 
 /*
