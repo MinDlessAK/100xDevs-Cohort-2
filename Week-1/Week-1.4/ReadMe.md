@@ -1,9 +1,9 @@
  Week-1.4 
  ====================================================================================================================================
            Topic
- .loop
- .function 
- .callback           
+ 1.loop
+ 2.function 
+ 3.callback           
 ======================================================================================================================================
 Loop
 In the world of programming, loops are a tool used to repeatedly execute a block of code. The repetition is controlled by a condition or a predetermined number of times.
