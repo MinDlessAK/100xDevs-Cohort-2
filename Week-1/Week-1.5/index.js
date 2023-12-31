@@ -30,7 +30,7 @@ function findSum(n) {
 */
 
 
-
+/*
 //Promise
 const fs = require('fs');
 
@@ -54,11 +54,10 @@ function hi(){
 
 kiratsReadFile().then(onDone);
 hi()
-
+*/
 
 
 /*
-
 // What even is a promise? 
 // Whenever u create it, you need to pass in a function as the first argument which has resolve as the  
 // First argument
@@ -122,3 +121,24 @@ console.log("hiiii")
 //  like promise callbacks, are handled promptly.
 
 */
+
+//Async await
+function kiratsAsyncFunction() {
+  let p = new Promise(function(resolve) {
+    // do some async logic here
+    resolve("hi there!")
+  });
+  return p;
+}
+
+async function main() {
+  const value = await kiratsAsyncFunction();
+  console.log(value);
+}
+
+main();
+
+// Aynsc await syntax 
+// Again, it is just syntactic sugar. Still uses callbacks/Promises under the hood 
+// Makes code much more readable than callbacks/Promises 
+// Usually used on the caller side, not on the side where you define an async function
