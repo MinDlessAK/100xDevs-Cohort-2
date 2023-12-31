@@ -71,8 +71,8 @@ Even if you are single threaded (brain can do only one thing at a time), you can
 You can also context switch between tasks if need be (the net time to do both the things would still be the same) 
 Net amount of time take to do a task can be decreased  
 by doing these two things (delegating and context switching)
-****************************************************************************************************************************************
 
+****************************************************************************************************************************************
 How does JS do the same? Can JS delegate? Can JS context switch ?  
 Yes! Using asynchronous functions
 
@@ -85,6 +85,9 @@ setTimeout
 fs.readFile - to read a file from your filesystem 
 Fetch - to fetch some data from an API endpoint 
 ****************************************************************************************************************************************
+
+========================================================================================================================================
+2.JS Browser architecture 
 Lets look at the javascript architecture that lets us achieve this asynchronous nature 
 
 In JavaScript, asynchronous code execution is achieved through an architecture called the "Event Loop." The Event Loop has three main components: the Call Stack, the Web APIs, and the Callback Queue.
@@ -102,7 +105,10 @@ The Event Loop continuously checks the Call Stack and the Callback Queue. If the
 When the asynchronous operation finally completes, it can trigger the execution of the callback function registered earlier. This callback function is then added to the Callback Queue, and the Event Loop can execute it once the Call Stack is empty.
 
 This architecture allows JavaScript to maintain a responsive user interface while performing complex tasks asynchronously.
-****************************************************************************************************************************************
+
+
+========================================================================================================================================
+3.Promises 
 What even is a promise? 
 Whenever u create it, you need to pass in a function as the first argument which has resolve as the  
 First argument
@@ -161,4 +167,34 @@ event-loop
   like promise callbacks, are handled promptly.
 
 
+========================================================================================================================================
+4.Async await
 
+Async await is a syntax feature in JavaScript that allows you to write asynchronous code in a way that resembles synchronous or blocking code. This syntax feature is based on Promises, but it provides a more convenient way to handle asynchronous operations.
+
+Here's a brief explanation of the code you provided:
+
+function kiratsAsyncFunction() {
+ let p = new Promise(function(resolve) {
+    // do some async logic here
+    resolve("hi there!")
+ });
+ return p;
+}
+In this function, we create a new Promise (p) that will eventually resolve to the string "hi there!". The resolve function is used to indicate that the Promise has been fulfilled.
+
+Now, let's look at the main function:
+
+async function main() {
+ const value = await kiratsAsyncFunction();
+ console.log(value);
+}
+In this function, we use the await keyword before calling the kiratsAsyncFunction(). The await keyword tells JavaScript to wait until the Promise returned by kiratsAsyncFunction() is resolved, and then assign the resolved value to the value variable.
+
+Finally, the main function is called:
+
+
+main();
+When main is called, it starts executing. It encounters the await keyword, which makes it wait until the Promise returned by kiratsAsyncFunction() is resolved. Once the Promise is resolved, the value of the resolved Promise is assigned to the value variable, and then the console.log(value) statement is executed, which logs the value to the console.
+
+In summary, the async await syntax in JavaScript provides a convenient way to write asynchronous code. It is built on top of Promises, and it makes the code look more like synchronous or blocking code, which can be easier to understand and work with.
