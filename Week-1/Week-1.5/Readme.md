@@ -71,6 +71,94 @@ Even if you are single threaded (brain can do only one thing at a time), you can
 You can also context switch between tasks if need be (the net time to do both the things would still be the same) 
 Net amount of time take to do a task can be decreased  
 by doing these two things (delegating and context switching)
+****************************************************************************************************************************************
+
+How does JS do the same? Can JS delegate? Can JS context switch ?  
+Yes! Using asynchronous functions
+
+Until now, we’ve only seen synchronous functions
+
+Lets introduce an asynchronous function (setTimeout)
+
+What are common async functions? 
+setTimeout 
+fs.readFile - to read a file from your filesystem 
+Fetch - to fetch some data from an API endpoint 
+****************************************************************************************************************************************
+Lets look at the javascript architecture that lets us achieve this asynchronous nature 
+
+In JavaScript, asynchronous code execution is achieved through an architecture called the "Event Loop." The Event Loop has three main components: the Call Stack, the Web APIs, and the Callback Queue.
+
+Call Stack: This is a data structure that stores information about the function calls in the program. It keeps track of the functions that are currently being executed. In JavaScript, due to its single-threaded nature, only one function can be executed at a time. Therefore, the Call Stack is never empty, as it always contains the currently executing function.
+
+Web APIs: These are JavaScript's interface to the browser's capabilities, such as fetching resources from the network or manipulating the DOM. The Web APIs are not a part of the JavaScript language itself but are provided by the browser environment. When a function is called that depends on a Web API, the function is added to the Call Stack and executed.
+
+Callback Queue: This is a data structure that stores the callback functions that have been registered but have not yet been executed. Callback functions are functions that are passed as arguments to other functions and are executed after a certain event or action has occurred. In JavaScript, the Event Loop constantly checks the Call Stack to see if it is empty. If it is, the Event Loop then dequeues the first callback function from the Callback Queue and adds it to the Call Stack to be executed.
+
+When the asynchronous function is called, the function that initiates the asynchronous operation is added to the Call Stack and executed. Once this function completes its execution, it can no longer affect the program's control flow. Instead, it can register a callback function that will be executed later when the asynchronous operation completes. This callback function is then added to the Callback Queue.
+
+The Event Loop continuously checks the Call Stack and the Callback Queue. If the Call Stack is empty, it dequeues the first callback function from the Callback Queue and adds it to the Call Stack to be executed. This way, the program can continue executing other code while waiting for the asynchronous operation to complete.
+
+When the asynchronous operation finally completes, it can trigger the execution of the callback function registered earlier. This callback function is then added to the Callback Queue, and the Event Loop can execute it once the Call Stack is empty.
+
+This architecture allows JavaScript to maintain a responsive user interface while performing complex tasks asynchronously.
+****************************************************************************************************************************************
+What even is a promise? 
+Whenever u create it, you need to pass in a function as the first argument which has resolve as the  
+First argument
+
+ Here’s a simple promise that immediately resolves
+
+let p = new Promise(function(resolve){
+      resolve("Hi There")
+       console.log(p);
+});
+
+console.log("hiiii")
+
+ When you attach a then callback to a Promise, the callback is registered to be executed when the Promise is resolved. 
+ However, it doesn't execute immediately; it's scheduled to run in the next iteration of the event loop. 
+ JavaScript is single-threaded and uses an event-driven, non-blocking I/O model.
+
+ Here's a step-by-step explanation of what happens:
+
+     The Promise p is created and resolved immediately with the value "Hi There."
+     The then callback is attached to the Promise, but it is not executed immediately; it's added to the microtask queue.
+     The console.log("hiiii") statement outside the Promise is encountered and executed immediately.
+     The event loop moves to the microtask queue and finds the then callback. It executes the callback with the resolved value, logging "Hi There."
+
+ This behavior ensures that synchronous code (like the console.log("hiiii") statement) is executed before microtasks, such as then callbacks.
+
+ If you want to see the "Hi There" log immediately after the Promise is resolved, you can use setTimeout to create a minimal delay and allow the event loop to move to the microtask queue:
+
+ The microtask queue is not part of the Web API; rather, it's a part of the JavaScript runtime environment. 
+ It's a queue for tasks that need to be executed after the current script has finished but before the browser renders the next frame.
+  Microtasks are used for tasks that are more immediate and higher priority than the regular macro tasks (like rendering updates).
+
+ In the context of JavaScript, tasks are divided into two categories:
+
+     Macro tasks: These are tasks that are handled by the event loop and typically include I/O operations, rendering, and script execution. 
+     Examples include setTimeout, setInterval, and I/O operations.
+
+     Micro tasks: These are tasks that are executed at the end of each task in the event loop. 
+    Microtasks are usually higher-priority tasks and include things like promise callbacks (then, catch, finally), process.nextTick in Node.js, and mutation observer callbacks.
+
+Promise
+ When a Promise is resolved or rejected, the callbacks registered with then, catch, or finally are placed in the microtask queue.
+  The microtask queue is processed after the current script has finished running but before the next frame is rendered. 
+  This ensures that microtasks are executed promptly.
+
+event-loop
+ Here's a simplified view of the event loop:
+
+     Execute the current script until the call stack is empty.
+     Process microtasks from the microtask queue.
+     Render changes to the DOM (if any).
+     Check for I/O events and execute corresponding callbacks (macro tasks).
+     Repeat.
+
+ This separation into microtasks and macro tasks helps maintain a smooth user experience and ensures that higher-priority tasks,
+  like promise callbacks, are handled promptly.
 
 
-How does JS do the same? Can JS delegate? Can JS context switch? 
+
