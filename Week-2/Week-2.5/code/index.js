@@ -1,3 +1,4 @@
+/*
 const express = require('express')
 const bodyParser=require('body-parser')
 
@@ -78,3 +79,98 @@ app.delete('/',function(req,res){
 
 
 app.listen(2929)
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const express = require('express')
+const bodyParser=require('body-parser')
+const app=express()
+app.use(bodyParser.json())
+
+let Users=[{
+  name:'Shubham',
+  kidney:[{
+     healthy:false
+  }]
+
+}]
+
+app.get('/',(req,res)=>{
+let ShubhamKidney=Users[0].kidney
+let NameOfKidneyHolder=Users[0].name
+let TotalNumberOfKidneys=ShubhamKidney.length
+let  NumberOfHealthykidney=0
+
+for(i=0;i<ShubhamKidney.length;i++){
+  if(Users[0].kidney[i].healthy){
+     NumberOfHealthykidney=NumberOfHealthykidney+1;
+  }
+}
+
+let NumberOfUnHealthykidney=TotalNumberOfKidneys-NumberOfHealthykidney;
+
+  res.json({
+    NameOfKidneyHolder,
+    TotalNumberOfKidneys,
+    NumberOfHealthykidney,
+    NumberOfUnHealthykidney
+  })
+    
+})
+
+app.post('/',(req,res)=>{
+  let IsHealthy=req.body.IsHealthy
+  Users[0].kidney.push({
+    healthy:IsHealthy
+  })
+   res.json({
+    "msg":"Post"
+   })
+})
+app.put('/',(req,res)=>{
+    for(let i=0;i<Users[0].kidney.length;i++){
+        Users[0].kidney[i].healthy=true
+   }
+   res.json({
+    "msg":"Put"
+   })
+})
+
+app.delete('/',(req,res)=>{
+  let newArray=[]
+  for(let i=0;i<Users[0].kidney.length;i++){
+      if(Users[0].kidney[i].healthy){
+         newArray.push({
+          healthy:true
+        })
+      }
+  }
+   Users[0].kidney=newArray
+  res.json({
+    "msg":"delete"
+  })
+})
+
+app.listen(9999)
+
+
