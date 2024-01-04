@@ -6,6 +6,15 @@
 
 # Understanding Middlewares:
 
+**What is Middlewares**
+Middlewares is like before you go to doctor, first Complete these Auth checks and input validation .
+
+This Part is Middleware
+Before  you reach the doctor 
+1. Auth checks? (Does this user have funds to visit the doctor) 
+2. Ensure input by the user is valid (BP / blood tests)
+
+
 **Imagine a Busy Hospital:**
 
 Think of a hospital where there's a doctor, patients waiting in line, and a few helpful assistants making sure everything runs smoothly.
