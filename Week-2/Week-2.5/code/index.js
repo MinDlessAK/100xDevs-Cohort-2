@@ -147,6 +147,7 @@ app.post('/',(req,res)=>{
     "msg":"Post"
    })
 })
+
 app.put('/',(req,res)=>{
     for(let i=0;i<Users[0].kidney.length;i++){
         Users[0].kidney[i].healthy=true
