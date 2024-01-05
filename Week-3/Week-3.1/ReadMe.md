@@ -1,8 +1,12 @@
 # Week 3.1 Middlewares, Global Catches & Zod
-
-**In this lecture, Harkirat dives deep into** `M**iddlewares:`** behind-the-scenes helpers that tidy up things before your main code does its thing. `G**lobal catches:**` safety nets for your code, they catch unexpected issues before they cause chaos. And finally, `Zod:` a library that ensures efficient input validation on your behalf.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd624914-6876-4b58-9694-424f7aa5e22a/fa622371-9254-4b71-a034-333f3755dbf7/Untitled.png)
+```
+Topics Include:
+1. Middlewares
+2. Global Catches
+3. Zod
+4. Intro to Authentication
+```
+**In this lecture, dives deep into** `M**iddlewares:`** behind-the-scenes helpers that tidy up things before your main code does its thing. `G**lobal catches:**` safety nets for your code, they catch unexpected issues before they cause chaos. And finally, `Zod:` a library that ensures efficient input validation on your behalf.
 
 # Understanding Middlewares:
 
@@ -29,22 +33,112 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
     - Another helper does quick health checks – like making sure patients' blood pressure is okay. This is similar to checking if the information coming to the doctor is healthy and makes sense `(Input Validation)`
     
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd624914-6876-4b58-9694-424f7aa5e22a/548d509d-be2a-4874-973d-90c9b363547a/Untitled.png)
+## Middlewares in JS Context :
 
-## Middlewares in JS Context & Problem Statement:
+**In the context of JS:**
+ -Imagine the waiting area as a single thread.
+ -Only one patient(in JS: request) can be served at a time.
+ -Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
+ -These can be categorised into two types:
+  -Auth checks (does the user have enough funds to visit Doctor).
+  -Input validation check (BP/Blood Tests).
+ -How to do them without harming the DRY principle? Answer: Middlewares.
 
-Earlier we used to organize all our prechecks followed by the application logic all in one route. 
 
 > Middlewares emerged as a solution to enhance code organization by extracting prechecks from the core application logic. The motivation behind their introduction lies in our commitment to the `"Don't Repeat Yourself" (DRY) principle.`
 > 
 
 By isolating these preliminary checks into distinct functions or code blocks known as middlewares, we achieve a more modular and maintainable codebase. This separation not only streamlines the primary application logic but also promotes code reuse, making it easier to manage, understand, and scale our software architecture.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd624914-6876-4b58-9694-424f7aa5e22a/daf25e04-e7a6-4446-8037-f62b1982c10e/Untitled.png)
+**Let’s go Deep:**
+Let’s look at the following check, User needs to: 
+-Send kidneyId in the form of queryParam (ex: ?n=)
+-Provide a correct username & password in the headers.
 
-## Solution: Middlewares
+## UGLY WAYS:
+-Using If/Else checks.
+-Using functions.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd624914-6876-4b58-9694-424f7aa5e22a/751201d4-a495-414a-8541-5d95d43f34a2/Untitled.png)
+```jsx
+const express = require("express");
+
+const app = express();
+
+app.get("/health-checkup", function (req, res) {
+  const username = req.headers.username;
+  const password = req.headers.password;
+  const kidneyId = req.query.kidneyId;
+
+  if (username != "harkirat" || password != "pass") {
+    res.status(400).json({"msg": "Somethings up with your ionputs"})
+    return
+  }
+
+  if (kidneyId != 1 && kidneyId != 2) {
+    res.status(400).json({"msg": "Somethings up with your ionputs"})
+    return
+  }
+  // do something with kidney here
+  res.json({
+    msg: "Your kidney is fine!"
+  })
+});
+
+app.listen(3000);
+
+```
+This is acceptable for one route but leads to repetition in cases of multiple routes requiring the same check (VIOLATION of DRY principle) and also is limited to only one file.
+
+
+**CORRECT WAY - USING MIDDLEWARES**
+
+- Middleware allows the **creation of functions to store common code**
+- And, these can be applied across multiple routes.
+
+### Middleware Usage
+
+- Middlewares are functions that have **access to the request object** (**`req`**), the **response object** (**`res`**), and the **next middleware function** in the application’s request-response cycle.
+- We can **call as many callback functions in the request** method.
+- But to **reach from one callback to the next one**, we need **`next()`**.
+- In the end callback, we don’t need **`next()`**, and we return **`res.json(..)`**. The best usage is explained in the example code.
+
+```jsx
+//app.js
+
+const app = express();
+
+//middleware 1
+function userMiddleware(req, res, next) {
+  if(username != 'john' && password == 'pass') {
+    res.status(400).json({ msg: 'Incorrect inputs!' });
+  }else{
+    next();
+  }
+}
+
+//middleware 2
+function kidneyMiddleware(req, res, next) {
+  if(kidneyId != 1 && kidneyId != 2) {
+    res.json({ msg: 'Incorrect inputs' });
+  }else{
+    next();
+  }
+}
+
+//using multiple middlewares
+app.get('/heart-checkup', userMiddleware, kidneyMiddleware, function (req, res) {
+  res.send('Your heart is healthy!');
+});
+
+app.get('/kidney-check', userMiddleware, kidneyMiddleware, function (req, res) {
+  res.send('Your kidney is healthy!');
+});
+
+//using only one middleware
+app.get('/health-checkup', userMiddleware, function (req, res) {
+  res.send('Your health is fine!');
+});
+```
 
 > Furthermore, with middleware, we can easily include as many precheck functions as needed. This means we have the freedom to add various checks or operations to our application without making the main code complex. It's like having building blocks that we can mix and match to create a customized process for our application, making it more adaptable and easier to manage. Here `userMiddleware` and `kidneyMiddleware`
 > 
@@ -69,7 +163,6 @@ app.use((req, res) => {
 });
 
 ```
-
 ### 2. Difference between `res.send` and `res.json`:
 
 - `res.send`: Sends a response of various types (string, Buffer, object, etc.). Express tries to guess the content type based on the data provided.
@@ -148,6 +241,10 @@ It essentially help us the developers give a better error message to the user.
 > 
 
 ```jsx
+//..
+//at the end of code
+//..
+
 // Error Handling Middleware
 const errorHandler = (err, req, res, next) => {
   console.error('Error:', err);
