@@ -192,7 +192,7 @@ const app = express();
 app.use(express.json()); // Middleware to parse JSON in the request body
 
 app.post('/api/data', (req, res) => {
-  const jsonData = req.body; // Now req.body contains the parsed JSON data
+  const jsonData = req.body.jsonData; // Now req.body contains the parsed JSON data
   // Process the data...
   res.json({ success: true });
 });
@@ -318,7 +318,6 @@ const loginSchema = z.object({
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-
   try {
     loginSchema.parse({ username, password });
     // Proceed with authentication logic
@@ -387,6 +386,22 @@ Zod is a TypeScript-first schema declaration and validation library. It provides
         const numberOrStringSchema = z.union([z.number(), z.string()]);
         const combinedSchema = z.intersection([userSchema, addressSchema]);
         ```
+In Zod, union and intersection are two ways to combine schemas.
+
+Union: In Zod, a union is used to create a schema that accepts one of several possible schemas. In other words, a union allows a value to match any of the given schemas.
+In the given example:
+
+
+`const numberOrStringSchema = z.union([z.number(), z.string()]);`
+The numberOrStringSchema is a schema that accepts either a number or a string.
+
+Intersection: On the other hand, an intersection is used to create a schema that accepts a value if it matches all of several given schemas. In other words, an intersection requires a value to match every schema specified.
+In the given example:
+
+`const combinedSchema = z.intersection([userSchema, addressSchema]);`
+The combinedSchema is a schema that accepts a value if it matches both the userSchema and the addressSchema.
+
+So, in this case, a union is used to accept a value that matches either a number or a string, while an intersection is used to accept a value that matches both a user and an address schema.
         
 6. **Optional and Nullable:**
     - You can make properties optional or nullable using `optional` and `nullable` methods.
