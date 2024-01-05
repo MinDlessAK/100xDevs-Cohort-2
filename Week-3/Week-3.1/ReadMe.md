@@ -33,8 +33,6 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
     - Another helper does quick health checks – like making sure patients' blood pressure is okay. This is similar to checking if the information coming to the doctor is healthy and makes sense `(Input Validation)`
     
 
-## Middlewares in JS Context :
-
 **In the context of JS:**
  -Imagine the waiting area as a single thread.
  -Only one patient(in JS: request) can be served at a time.
