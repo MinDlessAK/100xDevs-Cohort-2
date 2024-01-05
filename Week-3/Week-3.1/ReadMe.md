@@ -51,12 +51,12 @@ By isolating these preliminary checks into distinct functions or code blocks kno
 
    **Let’s go Deep:**
      Let’s look at the following check, User needs to: 
-    - Send kidneyId in the form of queryParam `(ex: ?n=)`
-    - Provide a correct username & password in the headers.
+   - Send kidneyId in the form of queryParam `(ex: ?n=)`
+   - Provide a correct username & password in the headers.
 
 ## UGLY WAYS:
--Using If/Else checks.
--Using functions.
+   - Using If/Else checks.
+   - Using functions.
 
 ```jsx
 const express = require("express");
