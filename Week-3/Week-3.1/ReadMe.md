@@ -33,14 +33,14 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
     - Another helper does quick health checks – like making sure patients' blood pressure is okay. This is similar to checking if the information coming to the doctor is healthy and makes sense `(Input Validation)`
     
 
-**In the context of JS:**
- -Imagine the waiting area as a single thread.
- -Only one patient(in JS: request) can be served at a time.
- -Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
- -These can be categorised into two types:
-  -Auth checks (does the user have enough funds to visit Doctor).
-  -Input validation check (BP/Blood Tests).
- -How to do them without harming the DRY principle? Answer: Middlewares.
+   **In the context of JS:**
+       -Imagine the waiting area as a single thread.
+       -Only one patient(in JS: request) can be served at a time.
+       -Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
+       -These can be categorised into two types:
+         -Auth checks (does the user have enough funds to visit Doctor).
+         -Input validation check (BP/Blood Tests).
+       -How to do them without harming the DRY principle? Answer: Middlewares.
 
 
 > Middlewares emerged as a solution to enhance code organization by extracting prechecks from the core application logic. The motivation behind their introduction lies in our commitment to the `"Don't Repeat Yourself" (DRY) principle.`
