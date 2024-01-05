@@ -36,12 +36,12 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
  
   **In the context of JS :**
    - Imagine the waiting area as a single thread.
-    - Only one patient(in JS: request) can be served at a time.
-    - Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
-    - These can be categorised into two types:
+   - Only one patient(in JS: request) can be served at a time.
+   - Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
+   - These can be categorised into two types:
       -  Auth checks (does the user have enough funds to visit Doctor).
       -  Input validation check (BP/Blood Tests).
-    - How to do them without harming the DRY principle? Answer: Middlewares.
+   - How to do them without harming the DRY principle? Answer: Middlewares.
 
 
 > Middlewares emerged as a solution to enhance code organization by extracting prechecks from the core application logic. The motivation behind their introduction lies in our commitment to the `"Don't Repeat Yourself" (DRY) principle.`
