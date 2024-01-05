@@ -27,18 +27,18 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
     - The doctor is like the main brain of our hospital – ready to help patients with their problems.
 2. **Waiting Room `(Callback Queue)` :**
     - The waiting room is where patients hang out before seeing the doctor. Each patient has a unique situation.
-3. Intermediates **`(Middlewares)` :**
+3. **Intermediates `(Middlewares)` :**
     - Before a patient sees the doctor, there are some helpers doing important tasks.
     - One helper checks if patients have the right paperwork . This is like ensuring everyone is who they say they are `(Authentication)`
     - Another helper does quick health checks – like making sure patients' blood pressure is okay. This is similar to checking if the information coming to the doctor is healthy and makes sense `(Input Validation)`
-4.**In the context of JS :**
-       -Imagine the waiting area as a single thread.
-       -Only one patient(in JS: request) can be served at a time.
-       -Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
-       -These can be categorised into two types:
-         -Auth checks (does the user have enough funds to visit Doctor).
-         -Input validation check (BP/Blood Tests).
-       -How to do them without harming the DRY principle? Answer: Middlewares.
+4. **In the context of JS :**
+    -Imagine the waiting area as a single thread.
+    -Only one patient(in JS: request) can be served at a time.
+    -Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
+    -These can be categorised into two types:
+      -Auth checks (does the user have enough funds to visit Doctor).
+      -Input validation check (BP/Blood Tests).
+    -How to do them without harming the DRY principle? Answer: Middlewares.
 
 
 > Middlewares emerged as a solution to enhance code organization by extracting prechecks from the core application logic. The motivation behind their introduction lies in our commitment to the `"Don't Repeat Yourself" (DRY) principle.`
