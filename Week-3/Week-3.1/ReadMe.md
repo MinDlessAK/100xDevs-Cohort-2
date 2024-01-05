@@ -35,12 +35,12 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
 ## Middlewares In Context Of JS 
  
   **In the context of JS :**
-    - Imagine the waiting area as a single thread.
+   - Imagine the waiting area as a single thread.
     - Only one patient(in JS: request) can be served at a time.
     - Insurance, Blood tests, and BP checks are essential checks needed before the patient/request is served.
     - These can be categorised into two types:
-      - Auth checks (does the user have enough funds to visit Doctor).
-      - Input validation check (BP/Blood Tests).
+      -  Auth checks (does the user have enough funds to visit Doctor).
+      -  Input validation check (BP/Blood Tests).
     - How to do them without harming the DRY principle? Answer: Middlewares.
 
 
