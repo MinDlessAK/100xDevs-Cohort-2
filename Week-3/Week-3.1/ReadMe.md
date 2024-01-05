@@ -49,12 +49,10 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
 
 By isolating these preliminary checks into distinct functions or code blocks known as middlewares, we achieve a more modular and maintainable codebase. This separation not only streamlines the primary application logic but also promotes code reuse, making it easier to manage, understand, and scale our software architecture.
 
-**Let’s go Deep:**
-
-Let’s look at the following check, User needs to: 
-
- -Send kidneyId in the form of queryParam `(ex: ?n=)`
- -Provide a correct username & password in the headers.
+   **Let’s go Deep:**
+     Let’s look at the following check, User needs to: 
+    - Send kidneyId in the form of queryParam `(ex: ?n=)`
+    - Provide a correct username & password in the headers.
 
 ## UGLY WAYS:
 -Using If/Else checks.
