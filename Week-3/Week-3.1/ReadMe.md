@@ -53,7 +53,7 @@ By isolating these preliminary checks into distinct functions or code blocks kno
 
 Let’s look at the following check, User needs to: 
 
- -Send kidneyId in the form of queryParam (ex: ?n=)
+ -Send kidneyId in the form of queryParam `(ex: ?n=)`
  -Provide a correct username & password in the headers.
 
 ## UGLY WAYS:
