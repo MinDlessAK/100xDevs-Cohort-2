@@ -32,6 +32,7 @@ Think of a hospital where there's a doctor, patients waiting in line, and a few 
     - One helper checks if patients have the right paperwork . This is like ensuring everyone is who they say they are `(Authentication)`
     - Another helper does quick health checks – like making sure patients' blood pressure is okay. This is similar to checking if the information coming to the doctor is healthy and makes sense `(Input Validation)`
     
+**Middleware In Context Of js**
 
    1.**In the context of JS:**
        -Imagine the waiting area as a single thread.
