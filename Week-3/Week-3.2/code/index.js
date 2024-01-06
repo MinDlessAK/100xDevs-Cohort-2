@@ -1,8 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const jwtPassword = "123456";
 
 const app = express();
+
+const jwtPassword = "123456";
 
 const ALL_USERS = [
   {
@@ -37,7 +38,7 @@ app.post("/signin", function (req, res) {
     });
   }
 
-  var token = jwt.sign({ username: username }, "shhhhh");
+  var token = jwt.sign({ username: username }, jwtPassword);
   return res.json({
     token,
   });
