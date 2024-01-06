@@ -1,7 +1,11 @@
+/*
+
 const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const app = express();
+
+app.use(express.json())
 
 const jwtPassword = "123456";
 
@@ -24,8 +28,13 @@ const ALL_USERS = [
 ];
 
 function userExists(username, password) {
-  // write logic to return true or false if this user exists
-  // in ALL_USERS array
+  let UserExists=false
+  for(i=0;i<ALL_USERS.length;i++){
+    if( ALL_USERS[i].username==username && ALL_USERS[i].password==password){
+       UserExists=true;  
+    }
+  }
+  return UserExists
 }
 
 app.post("/signin", function (req, res) {
@@ -50,11 +59,32 @@ app.get("/users", function (req, res) {
     const decoded = jwt.verify(token, jwtPassword);
     const username = decoded.username;
     // return a list of users other than this username
-  } catch (err) {
+    res.json(ALL_USERS.filter(function(value){
+        if(value.username==username ){
+            return false
+        }
+        else{
+            return true
+        }
+    }))
+  }catch(err) {
     return res.status(403).json({
       msg: "Invalid token",
     });
   }
+
 });
 
 app.listen(3000)
+
+*/
+
+const mongoose = require ('mongoose');
+
+//link
+mongoose.connect("mongodb+srv://akash007:rUALKxScojWSwAc2@cluster0.caaivkb.mongodb.net/")
+
+const User=mongoose.model('Users',{ name: String , email: String , password: String})
+
+const user=new User({ name:'Akash Mishra' , email:'akash@gmail.com',password:"123456"})
+user.save()
