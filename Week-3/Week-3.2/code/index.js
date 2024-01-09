@@ -1,5 +1,3 @@
-/*
-
 const express = require("express");
 const jwt = require("jsonwebtoken");
 
@@ -27,7 +25,8 @@ const ALL_USERS = [
   },
 ];
 
-function userExists(username, password) {
+
+function userExists(username, password){
   let UserExists=false
   for(i=0;i<ALL_USERS.length;i++){
     if( ALL_USERS[i].username==username && ALL_USERS[i].password==password){
@@ -37,7 +36,7 @@ function userExists(username, password) {
   return UserExists
 }
 
-app.post("/signin", function (req, res) {
+app.post("/signin", function (req,res) {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -77,8 +76,8 @@ app.get("/users", function (req, res) {
 
 app.listen(3000)
 
-*/
 
+/*
 const mongoose = require ('mongoose');
 
 //link
@@ -88,3 +87,4 @@ const User=mongoose.model('Users',{ name: String , email: String , password: Str
 
 const user=new User({ name:'Akash Mishra' , email:'akash@gmail.com',password:"123456"})
 user.save()
+*/
