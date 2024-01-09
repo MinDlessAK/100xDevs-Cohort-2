@@ -11,6 +11,7 @@ app.use(bodyParser.json())
       // console.log(req.body)
 // })
 
+
 app.post('/',function(req,res){
     res.send("Hello From gand fattika server")
 })
