@@ -61,6 +61,7 @@ const originalMap = new Map([
     ['c', 3]
    ]);
    
+   
    const newMap = new Map(
     Array.from(originalMap.entries()).map(([key, value]) => {
        return [key, value * 2]; // Replace this line with your transformation logic
