@@ -1,0 +1,47 @@
+<html>
+<head>
+
+</head>
+
+<script>
+let golobal=0;
+
+ function markAsread(iidd){
+     const parent=document.getElementById(iidd)
+     parent.children([2]).innerHTML='Done!'
+ }
+
+function createTodo(title , discribtion,id){
+   const child=document.createElement('div')
+   const  firstChild=document.createElement('div')
+   firstChild.innerHTML=title
+   const secondChild=document.createElement('div')
+   secondChild.innerHTML=discribtion
+   const thridChild=document.createElement('button')
+   thridChild.innerHTML='Mark As Read!'
+   thridChild.setAttribute('onclick',`markAsread(${id})`)
+   child.appendChild(firstChild)
+   child.appendChild(secondChild)
+   child.appendChild(thridChild)
+   child.setAttribute('id',id)
+   return child
+}
+
+function append(){
+ const title=document.getElementById('title').value
+ const discribtion=document.getElementById('discribtion').value
+ const main=document.getElementById('print')
+
+ main.appendChild(createTodo(title,discribtion,golobal++))
+}
+
+</script>
+
+<body>
+<input type="text" id="title" placeholder="Enter title"><br><br>
+<input type="text" id="discribtion" placeholder="Enter discribtion"><br><br>
+<button onclick="append()">Add Todo</button><br><br>
+<div id="print"></div>    
+</body>       
+
+</html>
