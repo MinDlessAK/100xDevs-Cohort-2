@@ -18,32 +18,34 @@
 // export default App
 
 
+//props
 import React from 'react'
 
 function App() {
-
+  const [count, setCount] = React.useState(0);
   return (
     <div>
-      <Button></Button>
+      <Button count={count} setCount={setCount}></Button>
     </div>
   )
 }
 
-function Button() {
-  const [count, setCount] = React.useState(0);
+function Button(props) {
 
   function onButtonClick() {
-    setCount(count + 1);
+    props.setCount(props.count + 1);
   }
 
   // return React.createElement(
   //   'button',
   //   { onClick: onButtonClick },
-  //   `Counter ${count}`
+  //   `Counter ${props.count}`
   // );
-    return <button onClick={onButtonClick}>Counter {count}</button>
+    return <button onClick={onButtonClick}>Counter {props.count}</button>
 
 }
 
 export default App
+
+
 
