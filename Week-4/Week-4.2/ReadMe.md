@@ -4,6 +4,52 @@
 
 In this lecture, Harkirat addresses the challenges encountered in vanilla JavaScript while building a Todo application. Focusing on the `limitations of manual DOM manipulation` and the `lack of a centralized state`the discussion sets the context for transitioning to React. The session highlights the pain points faced during development and introduces `React's declarative and component-based approach as a solution` for more efficient and scalable web development.
 
+# Full process of reconcilation
+
+**Defination**
+ The entire process is like react js made a copy that know as virtual dom and virtual dom tell browser dom to represent these things , so when any updated occurs like state ,props or re-render then reconciliation  come into the picture,  when ever change in made in react it create a new virtual dom that compare it to pervious virtual dom , camparision done by diffin algorithm. after compairing fiber came into picture then sechdule changes to the  broswer DOM. Fiber can pause, resume, and prioritize updates based on importance (e.g., user interactions over background tasks).
+
+**Step by step**
+
+**1. Initial Rendering:**
+
+React creates the initial virtual DOM (VDOM) based on the component structure and initial state.
+This VDOM is a lightweight, in-memory representation of the UI.
+React instructs the browser to render the real DOM based on the initial VDOM.
+ *2. Updates Triggered:*
+
+When a state change, prop change, or re-render occurs, React generates a new VDOM tree.
+3. Reconciliation:
+
+React compares the new VDOM with the previous one to identify the minimal set of changes needed in the real DOM.
+This comparison, known as "diffing," is efficient due to the VDOM's lightweight nature.
+4. Fiber Reconciler:
+
+It orchestrates the reconciliation process, breaking down updates into smaller, prioritized chunks called "fibers."
+This allows React to:
+Pause, resume, and prioritize updates based on importance (user interactions first).
+Spread work over multiple frames for smoother animations and interactions.
+5. Virtual DOM Updates:
+
+React applies the necessary changes to the VDOM based on the Fiber reconciler's instructions.
+This involves adding, removing, or modifying elements and their attributes within the VDOM tree.
+6. Real DOM Synchronization:
+
+React compares the updated VDOM with the real DOM to pinpoint the exact differences.
+It then instructs the browser to perform only the minimal DOM manipulations required to bring it in sync with the VDOM.
+7. Browser Updates:
+
+The browser executes the DOM operations as instructed by React, reflecting the changes on the user's screen.
+Key Points:
+
+Virtual DOM as a Buffer: The VDOM acts as an intermediary, allowing React to efficiently calculate changes before applying them to the real DOM, reducing costly browser operations.
+Fiber for Enhanced Performance and UX: Fiber's ability to prioritize updates and spread work over multiple frames leads to smoother rendering, improved responsiveness, and better handling of complex UIs and animations.
+React Controls Real DOM Updates: React always initiates real DOM changes, even though the Fiber reconciler plays a crucial role in planning and optimizing the process.
+
+
+
+
+
 # Why React?
 
 DOM manipulation, in its raw form, poses significant challenges for developers. Constructing dynamic websites using the basic primitives offered by the DOM—such as **`document.createElement`**, **`document.appendChild`**, **`element.setAttribute`**, and **`element.children`**—can be a complex and labor-intensive process. The inherent difficulty lies in orchestrating intricate interactions and updates within the document structure using these primitive tools. 
