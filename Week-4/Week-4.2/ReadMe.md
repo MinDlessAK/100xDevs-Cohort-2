@@ -31,7 +31,9 @@ In this lecture, Harkirat addresses the challenges encountered in vanilla JavaSc
 
 - Once the diffing process is complete, the Fiber reconciler steps in to orchestrate the reconciliation process.
 - It takes the identified changes and breaks them down into smaller, prioritized units of work (fibers).
- **Update Prioritization and Execution:**
+
+  **Update Prioritization and Execution:**
+  
 - The Fiber reconciler then determines the most optimal order for applying the updates, prioritizing user-initiated changes for     a   responsive feel.
 - It instructs the browser to perform the necessary DOM manipulations, spreading work over multiple frames if needed for smooth animations.
 
