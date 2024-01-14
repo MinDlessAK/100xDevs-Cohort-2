@@ -13,37 +13,46 @@ In this lecture, Harkirat addresses the challenges encountered in vanilla JavaSc
 
 **1. Initial Rendering:**
 
-React creates the initial virtual DOM (VDOM) based on the component structure and initial state.
-This VDOM is a lightweight, in-memory representation of the UI.
-React instructs the browser to render the real DOM based on the initial VDOM.
- *2. Updates Triggered:*
+- React creates the initial virtual DOM (VDOM) based on the component structure and initial state.
+- This VDOM is a lightweight, in-memory representation of the UI.
+- React instructs the browser to render the real DOM based on the initial VDOM.
 
-When a state change, prop change, or re-render occurs, React generates a new VDOM tree.
-3. Reconciliation:
+**2. Updates Triggered:**
 
-React compares the new VDOM with the previous one to identify the minimal set of changes needed in the real DOM.
-This comparison, known as "diffing," is efficient due to the VDOM's lightweight nature.
-4. Fiber Reconciler:
+- When a state change, prop change, or re-render occurs, React generates a new VDOM tree.
 
-It orchestrates the reconciliation process, breaking down updates into smaller, prioritized chunks called "fibers."
-This allows React to:
-Pause, resume, and prioritize updates based on importance (user interactions first).
-Spread work over multiple frames for smoother animations and interactions.
-5. Virtual DOM Updates:
+**3. Reconciliation:**
 
-React applies the necessary changes to the VDOM based on the Fiber reconciler's instructions.
-This involves adding, removing, or modifying elements and their attributes within the VDOM tree.
-6. Real DOM Synchronization:
+- React compares the new VDOM with the previous one to identify the minimal set of changes needed in the real DOM.
+- This comparison, known as "diffing," is efficient due to the VDOM's lightweight nature.
 
-React compares the updated VDOM with the real DOM to pinpoint the exact differences.
-It then instructs the browser to perform only the minimal DOM manipulations required to bring it in sync with the VDOM.
-7. Browser Updates:
+**4. Fiber Reconciler:**
 
-The browser executes the DOM operations as instructed by React, reflecting the changes on the user's screen.
-Key Points:
+- It orchestrates the reconciliation process, breaking down updates into smaller, prioritized chunks called "fibers."
+- This allows React to:
+   - Pause, resume, and prioritize updates based on importance (user interactions first).
+   - Spread work over multiple frames for smoother animations and interactions.
+
+**5. Virtual DOM Updates:**
+
+- React applies the necessary changes to the VDOM based on the Fiber reconciler's instructions.
+- This involves adding, removing, or modifying elements and their attributes within the VDOM tree.
+
+**6. Real DOM Synchronization:**
+
+- React compares the updated VDOM with the real DOM to pinpoint the exact differences.
+- It then instructs the browser to perform only the minimal DOM manipulations required to bring it in sync with the VDOM.
+
+**7. Browser Updates:**
+
+- The browser executes the DOM operations as instructed by React, reflecting the changes on the user's screen.
+
+**Key Points:**
 
 Virtual DOM as a Buffer: The VDOM acts as an intermediary, allowing React to efficiently calculate changes before applying them to the real DOM, reducing costly browser operations.
+
 Fiber for Enhanced Performance and UX: Fiber's ability to prioritize updates and spread work over multiple frames leads to smoother rendering, improved responsiveness, and better handling of complex UIs and animations.
+
 React Controls Real DOM Updates: React always initiates real DOM changes, even though the Fiber reconciler plays a crucial role in planning and optimizing the process.
 
 
