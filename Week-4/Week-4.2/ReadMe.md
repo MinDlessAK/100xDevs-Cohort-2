@@ -23,10 +23,17 @@ In this lecture, Harkirat addresses the challenges encountered in vanilla JavaSc
 
 **3. Reconciliation:**
 
-- React compares the new VDOM with the previous one to identify the minimal set of changes needed in the real DOM.
-- This comparison, known as "diffing," is efficient due to the VDOM's lightweight nature.
+-The comparison between the new and previous VDOM trees happens first, using React's `diffing` algorithm.
+-This algorithm efficiently identifies the exact changes that need to be made to the real DOM.
+
 
 **4. Fiber Reconciler:**
+
+- Once the diffing process is complete, the Fiber reconciler steps in to orchestrate the reconciliation process.
+- It takes the identified changes and breaks them down into smaller, prioritized units of work (fibers).
+ **Update Prioritization and Execution:**
+- The Fiber reconciler then determines the most optimal order for applying the updates, prioritizing user-initiated changes for     a   responsive feel.
+- It instructs the browser to perform the necessary DOM manipulations, spreading work over multiple frames if needed for smooth animations.
 
 - It orchestrates the reconciliation process, breaking down updates into smaller, prioritized chunks called "fibers."
 - This allows React to:
