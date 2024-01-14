@@ -1,28 +1,16 @@
-const mongoose = require('mongoose')
-const express =require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const adminRouter = require("./routes/admin")
+const userRouter = require("./routes/user");
+// mongoose.connect("mongodb+srv://akash007:rUALKxScojWSwAc2@cluster0.caaivkb.mongodb.net/")
+// Middleware for parsing request bodies
+app.use(bodyParser.json());
+app.use("/admin", adminRouter)
+app.use("/user", userRouter)
 
-const app=express()
+const PORT = 3000;
 
-app.use(express.json())
-
-mongoose.connect("mongodb+srv://akash007:rUALKxScojWSwAc2@cluster0.caaivkb.mongodb.net/")
-
-const userSchema=new mongoose.Schema({
-    username:String,
-    password:String
-})
-
-const User=mongoose.model('Users',userSchema)
-
-
-app.get('/',(req,res)=>{
-    username=req.body.username
-    password=req.body.password
-    User.create({username,password})
-   res.json({username,password})
-})
-
-
-app.listen(3000)
-
-
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
