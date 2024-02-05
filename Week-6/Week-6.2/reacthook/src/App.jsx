@@ -94,6 +94,7 @@ const MemoExample = () => {
 export default MemoExample;
 */
 
+/*
 import React, { useState, useCallback } from 'react';
 
 const ChildComponent = ({ onClick }) => {
@@ -122,3 +123,55 @@ const CallbackExample = () => {
 };
 
 export default CallbackExample;
+*/
+
+
+/*
+//custom hook
+import { useState } from "react";
+import { useEffect } from "react";
+
+function App() {
+  const [od,setod]=useState(2)
+  return <div>
+      <button onClick={(e)=>{if(e.target.innerText==1){setod(e.target.innerText)}}}>1</button>
+    <button onClick={(e)=>{if(e.target.innerText==2){setod(e.target.innerText)}}}>2</button>
+    <button onClick={(e)=>{if(e.target.innerText==3){setod(e.target.innerText)}}}>3</button>
+    <button onClick={(e)=>{if(e.target.innerText==4){setod(e.target.innerText)}}}>4</button>
+    <Todo id={od} />
+  </div>
+}
+
+function Todo({id}) {
+ const todo=useTodos(id)
+
+  return <div>
+    <h1>
+      {todo.title}
+    </h1>
+    <h4>
+      {todo.description}
+    </h4>
+  </div>
+}
+
+
+function useTodos(id){
+
+  const [todo, setTodo] = useState([]);
+
+  useEffect(() => {
+    fetch("https://sum-server.100xdevs.com/todo?id=" + id)
+      .then(async function(res) {
+        const json = await res.json();
+        setTodo (json.todo);
+      })
+  }, [id])
+
+  return todo
+
+}
+
+export default App;
+*/
+
